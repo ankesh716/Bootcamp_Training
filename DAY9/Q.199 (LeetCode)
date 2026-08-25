@@ -1,0 +1,30 @@
+//199. Binary Tree Right Side View//
+class Solution {
+    List<Integer> ans;
+    int globalLvl = 0;
+
+
+    public void rightView(TreeNode root, int currLvl,  List<Integer> ans) {
+
+        if(root == null) return ;
+
+        if(currLvl == globalLvl) {
+            ans.add(root.val);
+            globalLvl++;
+        }
+
+        rightView(root.right, currLvl + 1, ans);
+        rightView(root.left, currLvl + 1, ans);
+
+
+    }
+    public List<Integer> rightSideView(TreeNode root) {
+
+        ans = new ArrayList<Integer>();
+
+        rightView(root, 0, ans);
+
+        return ans;
+        
+    }
+}
